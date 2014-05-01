@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
 	servIP = argv[1];
 	echoString = argv[2];
 
-	if ((echoStringLen = strlen(echoString) > ECHOMAX))
+	if ((echoStringLen = strlen(echoString)) > ECHOMAX)
 		DieWithError("Echo word too long");
 
 	if (argc == 4)

@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)
 		DieWithError("socket() failed");
 
-	memset(&echoServAddr, 0, sizeof(echoClntAddr));
+	memset(&echoServAddr, 0, sizeof(echoServAddr));
 	echoServAddr.sin_family = AF_INET;
 	echoServAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	echoServAddr.sin_port = htons(echoServPort);
@@ -46,7 +46,7 @@ int main(int argc, char * argv[])
 			DieWithError("recvfrom() failed");
 
 		printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
-		
+
 		if (sendto(sock, echoBuffer, recvMsgSize, 0, (struct sockaddr *) &echoClntAddr, sizeof(echoClntAddr)) != recvMsgSize)
 			DieWithError("sendto() sent a different number of bytes than expected");
 	}
